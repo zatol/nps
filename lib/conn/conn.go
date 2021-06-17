@@ -3,11 +3,9 @@ package conn
 import (
 	"bufio"
 	"bytes"
-	"ehang.io/nps/lib/goroutine"
 	"encoding/binary"
 	"encoding/json"
 	"errors"
-	"github.com/astaxie/beego/logs"
 	"io"
 	"net"
 	"net/http"
@@ -16,6 +14,9 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"ehang.io/nps/lib/goroutine"
+	"github.com/astaxie/beego/logs"
 
 	"ehang.io/nps/lib/common"
 	"ehang.io/nps/lib/crypt"
@@ -209,7 +210,7 @@ func (s *Conn) GetHostInfo() (h *file.Host, err error) {
 //get task info
 func (s *Conn) GetConfigInfo() (c *file.Client, err error) {
 	err = s.getInfo(&c)
-	c.NoStore = true
+	c.NoStore = false
 	c.Status = true
 	if c.Flow == nil {
 		c.Flow = new(file.Flow)

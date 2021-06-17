@@ -1,7 +1,6 @@
 package server
 
 import (
-	"ehang.io/nps/lib/version"
 	"errors"
 	"math"
 	"os"
@@ -9,6 +8,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"ehang.io/nps/lib/version"
 
 	"ehang.io/nps/bridge"
 	"ehang.io/nps/lib/common"
@@ -195,6 +196,7 @@ func AddTask(t *file.Tunnel) error {
 	}
 	if minute, err := beego.AppConfig.Int("flow_store_interval"); err == nil && minute > 0 {
 		go flowSession(time.Minute * time.Duration(minute))
+		logs.Info("flow_store_interval %d", minute)
 	}
 	if svr := NewMode(Bridge, t); svr != nil {
 		logs.Info("tunnel task %s start mode：%s port %d", t.Remark, t.Mode, t.Port)

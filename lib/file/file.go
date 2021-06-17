@@ -3,12 +3,13 @@ package file
 import (
 	"encoding/json"
 	"errors"
-	"github.com/astaxie/beego/logs"
 	"os"
 	"path/filepath"
 	"strings"
 	"sync"
 	"sync/atomic"
+
+	"github.com/astaxie/beego/logs"
 
 	"ehang.io/nps/lib/common"
 	"ehang.io/nps/lib/rate"
